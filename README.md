@@ -39,7 +39,8 @@ def main():
 
     plot_scatter(index, series)
     
-    import xlwings as xw
+
+import xlwings as xw
 import numpy as np
 import pandas as pd
 
