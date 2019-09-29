@@ -17,7 +17,6 @@ def main():
 
     # functions.simulate(index, series, weekly, transform, iterations=1)
 
-
     def plot_scatter(index, series):
 
         data = pd.read_csv("output/" + index + " " + series + "/coordinates-" + index + "-" + series + ".csv")
@@ -38,9 +37,21 @@ def main():
         plt.show()
         plt.close()
 
-
     plot_scatter(index, series)
+    
+    import xlwings as xw
+import numpy as np
+import pandas as pd
 
+@xw.func
+@xw.arg('x', np.array, ndim=2)
+def matrix_mult(x, y):
+    return x @ y
 
-if __name__ == "__main__":
-    main()
+@xw.func
+@xw.arg('x', pd.DataFrame, index=False, header=False)
+def ds_to_csv(x):
+    result = x.to_csv(r'C:\\Users\\Dmytro\\myproject\\result.csv', index=False, header=False)
+    return "DONE"
+
+    
